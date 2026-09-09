@@ -1109,7 +1109,7 @@
 
         <div id="tabbar">
             <div id="tabs"></div>
-            <button id="newtab-btn" class="icon-btn" title="New tab">+</button>
+            <button id="newtab-btn" class="icon-btn" title="新しいタブ">+</button>
         </div>
 
         <div id="toolbar">
@@ -1120,7 +1120,7 @@
                 <div id="urlbar">
                     <button id="site-btn" class="icon-btn" title="Site settings"></button>
                     <input id="url-input" type="text" spellcheck="false" autocomplete="off"
-                        placeholder="Search DuckDuckGo or enter a URL">
+                        placeholder="DuckDuckGoで検索するかURLを入力...">
                     <button id="star-btn" class="icon-btn" title="Bookmark this page"></button>
                 </div>
                 <button id="games-btn" class="icon-btn nav-btn" title="Games"></button>
@@ -1132,7 +1132,7 @@
         <div id="content">
             <aside id="games-sidebar" class="sidebar">
                 <div class="sidebar-head">
-                    <span>Games</span>
+                    <span>ゲームサイト集</span>
                     <button id="games-sidebar-close" class="icon-btn sidebar-close" title="Close">×</button>
                 </div>
                 <div id="games-sidebar-list" class="sidebar-body"></div>
@@ -1222,14 +1222,14 @@
                 id: 'scramjet',
                 label: 'Scramjet',
                 prefix: SJ_PREFIX,
-                desc: 'The default. Best site compatibility and the fastest rewriter, but heavier on the browser.',
+                desc: 'デフォルトの設定です。サイトとの互換性が最も高く、リライターの処理速度も最速ですが、ブラウザへの負荷は大きくなります。',
                 create: createScramjetEngine,
             },
             ultraviolet: {
                 id: 'ultraviolet',
                 label: 'Ultraviolet',
                 prefix: UV_PREFIX,
-                desc: 'Lighter and long-established. Handles some stubborn sites Scramjet chokes on, but breaks on others.',
+                desc: '軽量で、長年の実績があります。Scramjetでは処理しきれない頑固なサイトにも対応できるが、場合によっては破損することもあります。',
                 create: createUltravioletEngine,
             },
         };
@@ -1929,7 +1929,7 @@ self.addEventListener("fetch", (event) => {
             const tab = {
                 id,
                 type: 'newtab',
-                title: 'New Tab',
+                title: '新しいタブ',
                 url: '',
                 favicon: NEWTAB_ICON,
                 panel,
@@ -2178,7 +2178,7 @@ self.addEventListener("fetch", (event) => {
 
         function updateTabEl(tab) {
             if (!tab.el) buildTabEl(tab);
-            const t = tab.title || 'New Tab';
+            const t = tab.title || '新しいタブ';
             if (tab.el.title !== t) tab.el.title = t;
             const icon = tab.favicon || NO_ICON;
             if (tab.favEl.getAttribute('src') !== icon) tab.favEl.src = icon;
@@ -2225,13 +2225,13 @@ self.addEventListener("fetch", (event) => {
 
             const title = document.createElement('h1');
             title.className = 'nt-title';
-            title.textContent = 'Altior Browser';
+            title.textContent = 'Nova ブラウザ';
 
             const group = document.createElement('div');
             group.className = 'nt-input-group';
             const input = document.createElement('input');
             input.className = 'nt-input';
-            input.placeholder = 'Search with DuckDuckGo or enter URL...';
+            input.placeholder = 'DuckDuckGoで検索するかURLを入力...';
             input.spellcheck = false;
             const go = document.createElement('button');
             go.className = 'nt-go';
@@ -2297,8 +2297,8 @@ self.addEventListener("fetch", (event) => {
                 opt.addEventListener('click', async () => {
                     if (def.id === settings.engine) return;
                     const ok = await showConfirm(
-                        `Switch to ${def.label}?`,
-                        'Altior reloads to start the new engine. Your open tabs will reopen afterwards.'
+                        `本当に ${def.label} に切り替えますか？`,
+                        'Novaブラウザが再読み込みを行い、新しいエンジンを起動します。その後、開いていたタブが再び開きます。'
                     );
                     if (ok) switchEngine(def.id);
                 });
@@ -2319,19 +2319,19 @@ self.addEventListener("fetch", (event) => {
 
             const note = document.createElement('div');
             note.className = 'set-note';
-            note.textContent = 'Only one engine runs per page load. Switching unregisters the current service worker and reloads.';
+            note.textContent = 'ページが読み込まれるたびに、1つのエンジンしか実行されません。「切り替え」を行うと、現在のサービスワーカーの登録が解除され、再読み込みが行われます。';
             inner.appendChild(note);
         }
 
         function buildWindowSection(inner) {
-            inner.appendChild(settingsSection('Sites that can open new windows'));
+            inner.appendChild(settingsSection('新しいウィンドウを開くことができるサイト'));
 
             const allowed = Object.keys(winDecisions).filter(o => winDecisions[o] === 'allow').sort();
 
             if (!allowed.length) {
                 const empty = document.createElement('div');
                 empty.className = 'set-empty';
-                empty.textContent = 'No sites yet. When a site asks to open a new window and you allow it, it is remembered here.';
+                empty.textContent = 'まだ登録されたサイトはありません。サイトが新しいウィンドウを開くことを要求し、それを許可した場合、その情報はここに記録されます。';
                 inner.appendChild(empty);
                 return;
             }
@@ -2562,7 +2562,7 @@ self.addEventListener("fetch", (event) => {
             } else if (tab.histPtr === 0) {
                 tab.histPtr = -1;
                 tab.url = '';
-                tab.title = 'New Tab';
+                tab.title = '新しいタブ';
                 tab.favicon = NEWTAB_ICON;
                 showNewtab(tab);
             }
@@ -2885,7 +2885,7 @@ self.addEventListener("fetch", (event) => {
             function tick(now) {
                 // Read the title live: a tab can be renamed mid-animation (e.g. a new
                 // tab immediately becoming the settings page).
-                const fullTitle = tab.title || 'New Tab';
+                const fullTitle = tab.title || '新しいタブ';
                 const totalUnits = fullTitle.length + 1;
                 const w = tab.el.getBoundingClientRect().width;
                 const p = Math.max(0, Math.min(1, (w - lowW) / range));
