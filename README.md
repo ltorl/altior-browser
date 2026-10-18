@@ -1,5 +1,24 @@
 ![animation](https://raw.githubusercontent.com/ltorl/readme-images/refs/heads/main/altior-browser.svg)
 
+
+> # ⚠️ Notice: This project is no longer maintained
+> This repository is deprecated. Please use https://github.com/ltorl/knoiren-browser instead.
+
+
+
+<br>
+<br>
+
+<br>
+<br>
+
+
+
+
+
+
+
+
 <h1> Altior Browser </h1>
 <h2> A simplistic proxy browser </h2>
 
