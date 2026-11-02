@@ -22,7 +22,7 @@ const PROXY_PREFIXES = [
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-let publicPath = path.resolve(process.cwd(), "public");
+const publicPath = path.resolve(process.env.ALTIOR_PUBLIC_DIR || path.join(__dirname, "../public"));
 
 if (!fs.existsSync(path.join(publicPath, "index.html"))) {
     console.error(`[Fatal] index.html not found at ${publicPath}`);
