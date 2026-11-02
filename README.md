@@ -131,3 +131,15 @@ git clone https://github.com/ltorl/altior-browser.git && cd altior-browser && pn
 <h1>Proxy Browser</h1>
 <h1>Proxy Unblocker</h1>
 <h1>Website Unblocker</h1>
+
+
+## Install from npm
+
+Altior can also be installed as a globally available command:
+
+```bash
+npm install -g @itsnotme5218/altior-browser
+altior-browser
+```
+
+Requires Node.js 22 or newer. The server listens on port 8080 by default; set the `PORT` environment variable to change it. This package runs the complete server and browser interface. A CDN such as jsDelivr can distribute static files, but it cannot run the proxy server or its WebSocket backend.
