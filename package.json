@@ -1,20 +1,43 @@
 {
-  "name": "altior-browser",
+  "name": "@itsnotme5218/altior-browser",
   "version": "2.0.0",
-  "description": "a scramjet launcher",
+  "description": "A self-hosted proxy browser with a tabbed web interface",
   "type": "module",
   "engines": {
     "node": ">=22",
     "npm": ">=10"
   },
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "prepublishOnly": "node --check src/index.js"
   },
+  "bin": {
+    "altior-browser": "./bin/altior-browser.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "public/",
+    "README.md",
+    "LICENSE"
+  ],
   "keywords": [
-    "proxy"
+    "altior",
+    "browser",
+    "web-proxy",
+    "scramjet",
+    "ultraviolet"
   ],
   "author": "letrol & ItsNotme5218",
-  "license": "GNU AFFERO",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ItsNotme5218/altior-browser.git"
+  },
+  "homepage": "https://github.com/ItsNotme5218/altior-browser#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@fastify/static": "^9.0.0",
     "@mercuryworkshop/bare-mux": "^2.1.9",
